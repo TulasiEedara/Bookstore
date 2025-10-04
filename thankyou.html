@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
+        header { background-color: #5d4037; color: white; padding: 20px 0; text-align: center; }
+        nav { text-align: center; background-color: #795548; padding: 10px 0; }
+        nav a { color: white; text-decoration: none; padding: 10px 15px; margin: 0 5px; border-radius: 5px; transition: background-color 0.3s; }
+        nav a:hover { background-color: #a1887f; }
+        .container { padding: 40px; max-width: 600px; margin: 40px auto; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; text-align: center; }
+        .thankyou h2 { color: #4CAF50; margin-bottom: 20px; }
+        .thankyou button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 4px; margin-top: 20px; }
+        .thankyou button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Order Confirmation</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="form.html">Order Form</a>
+        <a href="payment.html">Payment</a>
+        <a href="thankyou.html">Receipt</a>
+    </nav>
+
+    <div class="container thankyou">
+        <h2>🎉 Thank You for Your Order! 🎉</h2>
+        <p>Your purchase of <strong id="thankyou-total">$0.00</strong> has been completed.</p>
+        <p>A confirmation email with details on your <strong id="thankyou-quantity"></strong> items has been sent to:</p>
+        <p><strong id="thankyou-email"></strong></p>
+        <button onclick="clearOrderAndGoHome()">Continue Shopping</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const total = localStorage.getItem('orderTotal');
+            const email = localStorage.getItem('orderEmail');
+            const quantity = localStorage.getItem('orderQuantity');
+
+            document.getElementById('thankyou-total').textContent = total ? `$${total}` : '$0.00';
+            document.getElementById('thankyou-email').textContent = email || 'your email address';
+            document.getElementById('thankyou-quantity').textContent = quantity || '1';
+
+            // Optional: Clear payment-sensitive data after display
+            localStorage.removeItem('orderTotal');
+            localStorage.removeItem('orderQuantity');
+        });
+
+        function clearOrderAndGoHome() {
+            // Clear all remnants of the current order
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
