@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Literary Nook - Home</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
+        header { background-color: #5d4037; color: white; padding: 20px 0; text-align: center; }
+        nav { text-align: center; background-color: #795548; padding: 10px 0; }
+        nav a { color: white; text-decoration: none; padding: 10px 15px; margin: 0 5px; border-radius: 5px; transition: background-color 0.3s; }
+        nav a:hover { background-color: #a1887f; }
+        .container { padding: 20px; max-width: 800px; margin: 20px auto; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        .book-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px; display: flex; gap: 15px; align-items: center; }
+        .book-card button { background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; transition: background-color 0.3s; }
+        .book-card button:hover { background-color: #45a049; }
+        .book-card div:first-child { width: 80px; text-align: center; font-style: italic; color: #777; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Literary Nook 📚</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="form.html">Order Form</a>
+        <a href="payment.html">Payment</a>
+        <a href="thankyou.html">Receipt</a>
+    </nav>
+
+    <div class="container">
+        <h2>Featured Books</h2>
+        <p>Welcome to our bookstore! Click "Order" to select a book and proceed to the form.</p>
+
+        <div class="book-card">
+            <div>[Image Placeholder]</div>
+            <div>
+                <h3>The Star Traveler</h3>
+                <p>By A. B. Author. A thrilling science fiction epic.</p>
+                <p><strong>Price: $19.99</strong></p>
+                <button onclick="selectBook('The Star Traveler', 19.99)">Order Book</button>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div>[Image Placeholder]</div>
+            <div>
+                <h3>Culinary Secrets</h3>
+                <p>By C. D. Chef. Master the art of gourmet cooking.</p>
+                <p><strong>Price: $24.50</strong></p>
+                <button onclick="selectBook('Culinary Secrets', 24.50)">Order Book</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectBook(title, price) {
+            // In a real application, you would store this in localStorage or a session.
+            // For this example, we use localStorage to pass data to the next page.
+            localStorage.setItem('selectedBookTitle', title);
+            localStorage.setItem('selectedBookPrice', price);
+            window.location.href = 'form.html'; // Navigate to the next page
+        }
+    </script>
+</body>
+</html>
