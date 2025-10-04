@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
+        header { background-color: #5d4037; color: white; padding: 20px 0; text-align: center; }
+        nav { text-align: center; background-color: #795548; padding: 10px 0; }
+        nav a { color: white; text-decoration: none; padding: 10px 15px; margin: 0 5px; border-radius: 5px; transition: background-color 0.3s; }
+        nav a:hover { background-color: #a1887f; }
+        .container { padding: 20px; max-width: 600px; margin: 20px auto; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="text"], select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #f44336; color: white; padding: 12px 20px; border: none; cursor: pointer; border-radius: 4px; font-size: 16px; transition: background-color 0.3s; width: 100%; margin-top: 10px; }
+        button:hover { background-color: #d32f2f; }
+        .total-display { font-size: 1.5em; font-weight: bold; margin-bottom: 20px; text-align: right; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Complete Your Payment</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="form.html">Order Form</a>
+        <a href="payment.html">Payment</a>
+        <a href="thankyou.html">Receipt</a>
+    </nav>
+
+    <div class="container">
+        <h2>Payment Details</h2>
+        <div class="total-display">Order Total: <span id="order-total">$0.00</span></div>
+
+        <form id="payment-form">
+            <label for="card-type">Card Type:</label>
+            <select id="card-type" required>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">Amex</option>
+            </select>
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" pattern="\d{16}" title="16 digits" required>
+
+            <label for="expiry">Expiry Date (MM/YY):</label>
+            <input type="text" id="expiry" pattern="\d{2}/\d{2}" title="Format: MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" pattern="\d{3,4}" title="3 or 4 digits" required>
+
+            <button type="submit">Complete Purchase</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const total = localStorage.getItem('orderTotal');
+            if (total) {
+                document.getElementById('order-total').textContent = `$${total}`;
+            } else {
+                alert("Order total not found. Starting over.");
+                window.location.href = 'index.html';
+            }
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // In a real scenario, this is where payment processing would occur.
+            // For this simulation, we proceed directly to the thank you page.
+            window.location.href = 'thankyou.html';
+        });
+    </script>
+</body>
+</html>
